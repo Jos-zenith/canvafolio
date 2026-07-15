@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
-import { Mail, Phone, Linkedin, Github, MapPin, Download, ExternalLink } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, MapPin, Download, ExternalLink, Sparkles } from 'lucide-react';
+import { PageHeader, PageShell, RevealSection } from './PageFrame';
 
 export function AboutPage() {
   const contactInfo = [
@@ -8,28 +9,43 @@ export function AboutPage() {
       label: 'Email',
       value: 'zenithjoshua.27it@licet.ac.in',
       link: 'mailto:zenithjoshua.27it@licet.ac.in',
-      color: 'from-purple-500 to-pink-500',
+      color: 'bg-violet-50 text-violet-700 border-violet-100',
     },
     {
       icon: <Phone className="w-5 h-5" />,
       label: 'Phone',
       value: '+91 7448343632',
       link: 'tel:+917448343632',
-      color: 'from-green-500 to-emerald-500',
+      color: 'bg-teal-50 text-teal-700 border-teal-100',
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       label: 'LinkedIn',
       value: 'linkedin',
       link: 'https://www.linkedin.com/in/zenith-joshua-7178a623a/',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'bg-slate-50 text-slate-700 border-slate-100',
     },
     {
       icon: <Github className="w-5 h-5" />,
       label: 'GitHub',
       value: 'github',
       link: 'https://github.com/Jos-zenith',
-      color: 'from-gray-600 to-gray-800',
+      color: 'bg-sand-50 text-slate-700 border-sand-100',
+    },
+  ];
+
+  const socialLinks = [
+    {
+      label: 'LinkedIn',
+      value: 'Profile',
+      link: 'https://www.linkedin.com/in/zenith-joshua-7178a623a/',
+      icon: <Linkedin className="w-4 h-4" />,
+    },
+    {
+      label: 'GitHub',
+      value: 'Source',
+      link: 'https://github.com/Jos-zenith',
+      icon: <Github className="w-4 h-4" />,
     },
   ];
 
@@ -43,158 +59,151 @@ export function AboutPage() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 lg:px-8 py-6 lg:py-8">
-      <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-        {/* Left Column */}
-        <div className="space-y-6">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.16),transparent_28%),linear-gradient(135deg,#5b21b6,#be185d)] rounded-[2rem] p-8 lg:p-10 text-white text-center relative overflow-hidden shadow-[0_24px_60px_rgba(88,28,135,0.20)]"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
-            
-            <div className="relative z-10">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                className="w-24 h-24 lg:w-28 lg:h-28 bg-white/18 backdrop-blur-sm rounded-[1.5rem] flex items-center justify-center mx-auto mb-5 border border-white/15"
-              >
-                <span className="text-5xl lg:text-6xl">👨‍💻</span>
-              </motion.div>
-              <h1 className="text-3xl lg:text-4xl mb-3">Zenith Joshua</h1>
-              <p className="text-purple-100 text-lg lg:text-xl mb-2">Product Leader & Technical Founder</p>
-              <p className="text-purple-100/80 text-sm lg:text-base">
-                Product-minded builder with a track record of shipping scalable solutions across IoT, AI, and automotive systems.
-                I focus on turning technical effort into measurable outcomes, tighter execution, and better user impact.
-              </p>
-            </div>
-          </motion.div>
+    <PageShell>
+      <PageHeader
+        eyebrow="About the builder"
+        title="About"
+        intro="Product-minded builder with a track record of shipping scalable solutions across IoT, AI, and automotive systems."
+        stats={[
+          { value: '22', label: 'Members led' },
+          { value: '6', label: 'Awards' },
+          { value: '2', label: 'Startups' },
+        ]}
+      />
 
-          {/* About Me */}
-          <div>
-            <h2 className="text-xl lg:text-2xl mb-4">About Me</h2>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 shadow-[0_18px_40px_rgba(120,76,151,0.08)] border border-white/70"
-            >
-                <p className="text-sm lg:text-base text-slate-600 leading-relaxed mb-4">
-                I thrive at the intersection of product thinking, engineering, and execution. My work is driven by a simple lens: identify the highest-leverage problem, align the team around outcomes, and ship solutions that move real metrics. Whether I’m leading a 22-member team to build an electric vehicle from the chassis up or architecting IoT systems to optimize urban infrastructure, I focus on building products that work for people and for the business.</p>
-              <p className="text-sm lg:text-base text-slate-600 leading-relaxed">
-                Currently pursuing my Bachelor's in Information Technology while actively working on multiple projects
-              </p>
-            </motion.div>
-          </div>
+      <RevealSection>
+        <div className="relative overflow-hidden rounded-[2.25rem] border border-white/70 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_28%),linear-gradient(135deg,rgba(91,33,182,0.96),rgba(190,24,93,0.92))] p-6 lg:p-8 text-white shadow-[0_24px_60px_rgba(88,28,135,0.20)]">
+          <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/10" />
+          <div className="absolute bottom-0 left-0 h-24 w-24 -translate-x-1/2 translate-y-1/2 rounded-full bg-white/10" />
+          <div className="relative grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+            <div className="space-y-5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] backdrop-blur-sm">
+                <Sparkles className="h-4 w-4" />
+                Editable canvas
+              </div>
+              <div className="space-y-3">
+                <h2 className="text-3xl lg:text-5xl tracking-tight">Zenith Joshua</h2>
+                <p className="text-lg lg:text-xl text-purple-100">Product Leader & Technical Founder</p>
+                <p className="max-w-2xl text-sm lg:text-base leading-relaxed text-purple-50/90">
+                  I work at the intersection of product thinking, engineering, and execution. The focus is always the same: identify the highest-leverage problem, align the team around outcomes, and ship solutions that move real metrics.
+                </p>
+              </div>
 
-          {/* Interests */}
-          <div>
-            <h2 className="text-xl lg:text-2xl mb-4">Interests & Passions</h2>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 shadow-[0_18px_40px_rgba(120,76,151,0.08)] border border-white/70"
-            >
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {interests.map((interest, index) => (
-                  <div
-                    key={index}
-                    className="bg-slate-50/80 rounded-2xl p-4 text-center hover:bg-violet-50 transition-colors border border-transparent hover:border-violet-100"
-                  >
-                    <div className="text-3xl mb-2">{interest.emoji}</div>
-                    <div className="text-xs lg:text-sm text-slate-700">{interest.text}</div>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {interests.map((interest) => (
+                  <div key={interest.text} className="rounded-[1.25rem] border border-white/15 bg-white/10 px-4 py-4 text-center backdrop-blur-sm">
+                    <div className="text-3xl">{interest.emoji}</div>
+                    <div className="mt-2 text-xs uppercase tracking-[0.18em] text-purple-100/80">{interest.text}</div>
                   </div>
                 ))}
               </div>
-            </motion.div>
-          </div>
-        </div>
+            </div>
 
-        {/* Right Column */}
-        <div className="space-y-6">
-          {/* Contact Information */}
-          <div>
-            <h2 className="text-xl lg:text-2xl mb-4">Get in Touch</h2>
             <div className="space-y-3">
               {contactInfo.map((contact, index) => (
                 <motion.a
-                  key={index}
+                  key={contact.label}
                   href={contact.link}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
-                  className="block bg-white/80 backdrop-blur-xl rounded-[1.5rem] p-5 shadow-[0_16px_35px_rgba(120,76,151,0.08)] border border-white/70 hover:-translate-y-0.5 hover:shadow-[0_22px_50px_rgba(120,76,151,0.14)] transition-all group"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  className="group block rounded-[1.5rem] border border-dashed border-white/25 bg-white/10 p-4 shadow-[0_16px_40px_rgba(34,18,58,0.12)] backdrop-blur-sm transition-transform hover:-translate-y-0.5"
                 >
                   <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center text-white flex-shrink-0 shadow-md`}>
+                    <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border border-white/15 bg-white/15 ${contact.color}`}>
                       {contact.icon}
                     </div>
                     <div className="flex-1">
-                      <div className="text-xs text-slate-500 mb-1 uppercase tracking-[0.16em]">{contact.label}</div>
-                      <div className="text-sm lg:text-base text-slate-900 group-hover:text-violet-700 transition-colors">{contact.value}</div>
+                      <div className="text-[11px] uppercase tracking-[0.18em] text-purple-100/80">{contact.label}</div>
+                      <div className="mt-1 text-sm lg:text-base text-white/95">{contact.value}</div>
                     </div>
-                    <ExternalLink className="w-4 h-4 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="h-4 w-4 text-white/45 opacity-0 transition-opacity group-hover:opacity-100" />
                   </div>
                 </motion.a>
               ))}
+
+              <div className="grid gap-3 sm:grid-cols-2 pt-2">
+                {socialLinks.map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.5 }}
+                    className="group rounded-[1.25rem] border border-white/15 bg-white/10 px-4 py-4 text-white shadow-[0_12px_30px_rgba(34,18,58,0.10)] backdrop-blur-sm transition-transform hover:-translate-y-0.5"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <div className="text-[11px] uppercase tracking-[0.18em] text-purple-100/80">{social.label}</div>
+                        <div className="mt-1 text-sm font-medium text-white">{social.value}</div>
+                      </div>
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/10">
+                        {social.icon}
+                      </div>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </div>
+        </div>
+      </RevealSection>
 
-          {/* Location */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 }}
-            className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 shadow-[0_18px_40px_rgba(120,76,151,0.08)] border border-white/70"
-          >
-            <div className="flex items-start gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white flex-shrink-0 shadow-md">
-                <MapPin className="w-7 h-7" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-base lg:text-lg mb-2">Location</h3>
-                <p className="text-sm text-slate-600 mb-1">Chennai, Tamil Nadu, India</p>
-                <p className="text-xs text-slate-500">Loyola ICAM College of Engineering and Technology</p>
+      <RevealSection>
+        <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
+          <div className="surface-card rounded-[2rem] border border-white/70 p-6 lg:p-8 shadow-[0_16px_40px_rgba(34,18,58,0.08)]">
+            <h3 className="text-xl lg:text-2xl tracking-tight mb-4">About Me</h3>
+            <p className="text-sm lg:text-base text-slate-600 leading-relaxed mb-4">
+              I thrive at the intersection of product thinking, engineering, and execution. Whether I’m leading a 22-member team to build an electric vehicle from the chassis up or architecting IoT systems to optimize urban infrastructure, I focus on building products that work for people and for the business.
+            </p>
+            <p className="text-sm lg:text-base text-slate-600 leading-relaxed">
+              Currently pursuing my Bachelor's in Information Technology while actively working on multiple projects.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="surface-card rounded-[2rem] border border-white/70 p-6 lg:p-8 shadow-[0_16px_40px_rgba(34,18,58,0.08)]">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl border border-sand-100 bg-sand-50 text-amber-700 shadow-sm">
+                  <MapPin className="w-7 h-7" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base lg:text-lg mb-2">Location</h3>
+                  <p className="text-sm text-slate-600 mb-1">Chennai, Tamil Nadu, India</p>
+                  <p className="text-xs text-slate-500">Loyola ICAM College of Engineering and Technology</p>
+                </div>
               </div>
             </div>
-          </motion.div>
 
-          {/* Download Resume CTA */}
-          <motion.a
-            href="https://docs.google.com/document/d/1ojae1n-xKYxAsfgFJk5XETuKijtpQ_1nXZOaocUttjY/edit?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-            className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-500 to-rose-500 text-white rounded-[1.5rem] p-5 lg:p-6 shadow-[0_18px_50px_rgba(217,70,239,0.2)] hover:shadow-[0_24px_60px_rgba(217,70,239,0.28)] transition-all flex items-center justify-center gap-3 text-base lg:text-lg group active:scale-95"
-          >
-            <Download className="w-6 h-6 group-hover:animate-bounce" />
-            <span>Download Resume</span>
-          </motion.a>
-
-          {/* Footer */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="text-center py-4"
-          >
-            <p className="text-xs lg:text-sm text-slate-400">
-              Designed with intention, not templates
-            </p>
-            <p className="text-xs lg:text-sm text-slate-400 mt-1">
-              Developed by Jos_zenith
-            </p>
-          </motion.div>
+            <motion.a
+              href="https://docs.google.com/document/d/1ojae1n-xKYxAsfgFJk5XETuKijtpQ_1nXZOaocUttjY/edit?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55 }}
+              className="group flex items-center justify-center gap-3 rounded-[1.5rem] bg-gradient-to-r from-violet-600 via-fuchsia-500 to-rose-500 p-5 text-white shadow-[0_18px_50px_rgba(217,70,239,0.2)] transition-all hover:shadow-[0_24px_60px_rgba(217,70,239,0.28)] active:scale-95"
+            >
+              <Download className="w-6 h-6 group-hover:animate-bounce" />
+              <span className="text-base lg:text-lg">Download Resume</span>
+            </motion.a>
+          </div>
         </div>
-      </div>
-    </div>
+      </RevealSection>
+
+      <RevealSection>
+        <div className="text-center py-2">
+          <p className="text-xs lg:text-sm text-slate-400">Designed with intention, not templates</p>
+          <p className="text-xs lg:text-sm text-slate-400 mt-1">Developed by Jos_zenith</p>
+        </div>
+      </RevealSection>
+    </PageShell>
   );
 }

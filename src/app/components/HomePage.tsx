@@ -1,14 +1,13 @@
 import { motion } from 'motion/react';
-import { Sparkles, FileText, Download, ExternalLink, ArrowRight, Plus, Palette, Presentation, Video, Instagram, Code2, Trophy, Users } from 'lucide-react';
+import { Download, ExternalLink, ArrowRight, Plus, Palette, Presentation, Video, Instagram, Code2, Trophy, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { TemplateEditor } from './TemplateEditor';
+import { GlassCard, GradientButton, GhostButton, SectionHeader, StatChip, TagPill } from './ui/portfolio-elements';
 
 interface HomePageProps {
   setActiveTab: (tab: string) => void;
 }
 
 export function HomePage({ setActiveTab }: HomePageProps) {
-  const [selectedTemplate, setSelectedTemplate] = useState<any>(null);
   const [counters, setCounters] = useState({ problems: 0, awards: 0, team: 0 });
 
   // Animate counters on mount
@@ -39,70 +38,38 @@ export function HomePage({ setActiveTab }: HomePageProps) {
     return () => clearInterval(timer);
   }, []);
 
-  const templates = [
+  const proofOfWork = [
     {
       id: 1,
-      title: 'Skillrack Profile',
-      category: 'Resume',
-      icon: <FileText className="w-5 h-5" />,
-      color: 'from-purple-500 to-pink-500',
-      image: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      description: 'Competitive coding profile',
-      link: 'https://www.skillrack.com/faces/resume.xhtml?id=446603&key=f9045f93b0e369e843179049553d743fc9e36693',
-      stats: {
-        label: 'Global Rank',
-        value: '50,000',
-        subtext: 'Top Coder',
-        icon: <Code2 className="w-5 h-5" />,
-      }
+      title: 'EngineerFit',
+      label: 'Live product',
+      description: 'Career clarity for South Indian engineers with a deployed decision-support experience.',
+      link: 'https://ebv-engineerfit-seven.vercel.app/',
+      image: 'https://i.postimg.cc/rsHWf6Tb/mechanical-gears-integration-human-brain-silhouette-innovation-creativity-concept-1332469-219.jpg',
     },
     {
       id: 2,
-      title: 'Duolingo',
-      category: 'Portfolio',
-      icon: <Palette className="w-5 h-5" />,
-      color: 'from-blue-500 to-cyan-500',
-      image: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      description: 'Language learning streak',
-      link: 'https://www.duolingo.com/profile/jos_zen?via=share_profile_link',
-      stats: {
-        label: 'Day Streak',
-        value: '500+',
-        subtext: 'Days in a row',
-        icon: <Sparkles className="w-5 h-5" />,
-      }
+      title: 'Karuvelam',
+      label: 'Live product',
+      description: 'Sustainable bio-preservative product system shipped as a deployed web experience.',
+      link: 'https://karuvelam.vercel.app/',
+      image: 'https://i.postimg.cc/hP9T95wZ/glass-beaker-with-green-leaf-inside-971713-5040.avif',
     },
     {
       id: 3,
-      title: 'Leetcode',
-      category: 'Presentation',
-      icon: <Presentation className="w-5 h-5" />,
-      color: 'from-green-500 to-emerald-500',
-      image: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-      description: 'Problems solved',
-      link: 'https://leetcode.com/u/Zenith_Joshua/',
-      stats: {
-        label: 'Problems',
-        value: '60+',
-        subtext: 'Solved',
-        icon: <Code2 className="w-5 h-5" />,
-      }
+      title: 'Jalodhyam',
+      label: 'Live product',
+      description: 'Community water data translated into a deployed civic utility product.',
+      link: 'https://e-jalodayam.vercel.app/',
+      image: 'https://i.postimg.cc/Y2Jqp2dF/A-digital-illustrati.png',
     },
     {
       id: 4,
-      title: 'Unstop',
-      category: 'Social',
-      icon: <Instagram className="w-5 h-5" />,
-      color: 'from-pink-500 to-rose-500',
-      image: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-      description: 'Competition platform',
-      link: 'https://unstop.com/u/zenitjos7470',
-      stats: {
-        label: 'Competitions',
-        value: '25+',
-        subtext: 'Participated',
-        icon: <Trophy className="w-5 h-5" />,
-      }
+      title: 'Open Projects',
+      label: 'More work',
+      description: 'Browse the full project collection and the supporting case studies.',
+      link: 'projects',
+      image: 'https://i.postimg.cc/P55smBJh/Whats-App-Image-2025-08-09-at-16-56-26-477fa066.jpg',
     },
   ];
 
@@ -121,19 +88,10 @@ export function HomePage({ setActiveTab }: HomePageProps) {
     }
   };
 
-  const handleTemplateClick = (template: any) => {
-    // If template has a link, open it in a new tab
-    if (template.link) {
-      window.open(template.link, '_blank');
-    } else {
-      setSelectedTemplate(template);
-    }
-  };
-
   return (
     <div>
       {/* Hero Background with Pattern */}
-      <div className="min-h-[62vh] lg:min-h-[68vh] relative overflow-hidden">
+      <div className="relative overflow-hidden py-4 lg:py-6">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(168,85,247,0.16),transparent_24%),radial-gradient(circle_at_85%_12%,rgba(236,72,153,0.14),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.72),rgba(250,244,238,0.96))]">
           <div className="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,rgba(124,58,237,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(124,58,237,0.08)_1px,transparent_1px)] bg-[size:48px_48px]" />
@@ -144,301 +102,181 @@ export function HomePage({ setActiveTab }: HomePageProps) {
           <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white/70 to-transparent" />
         </div>
 
-        <div className="relative w-full max-w-7xl mx-auto px-4 lg:px-8 py-4 lg:py-8">
-          <div className="grid lg:grid-cols-2 gap-5 lg:gap-8 items-start">
-            {/* Left Side - Hero Content */}
+        <div className="relative w-full max-w-7xl mx-auto px-4 lg:px-8">
+          <div className="grid gap-6 2xl:grid-cols-[1.02fr_0.98fr] 2xl:gap-8 items-start">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-6 text-center lg:text-left"
+              className="space-y-4 lg:space-y-5"
             >
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-xl text-violet-700 px-4 py-2 rounded-full text-sm border border-white/70 shadow-[0_10px_30px_rgba(129,93,170,0.12)]"
+              <div className="flex items-center justify-between gap-3">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="surface-subtle inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-violet-700"
+                >
+                  <span>Portfolio overview</span>
+                </motion.div>
+                <div className="surface-card inline-flex items-center gap-1 rounded-full p-1 text-sm">
+                  <span className="rounded-full px-3 py-1.5 bg-white text-slate-800 shadow-sm">Featured work</span>
+                </div>
+              </div>
+
+              <GlassCard
+                elevation="lg"
+                padding="lg"
+                className="group relative w-full overflow-hidden bg-[linear-gradient(180deg,rgba(255,252,247,0.98),rgba(247,240,231,0.94))] text-left"
               >
-                <Sparkles className="w-4 h-4" />
-                <span>Product leader available for high-impact roles</span>
-              </motion.div>
+                <div className="relative z-10 p-4 lg:p-5 space-y-4">
+                  <div className="grid gap-4 2xl:grid-cols-[0.92fr_1.08fr] 2xl:items-center">
+                    <div className="relative mx-auto lg:mx-0 h-48 w-48 lg:h-56 lg:w-56">
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-500 via-fuchsia-500 to-rose-500 p-1 shadow-[0_20px_50px_rgba(217,70,239,0.18)]">
+                        <div className="relative flex h-full w-full items-center justify-center rounded-full bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(247,239,225,0.94))] border border-white/80">
+                          <div className="absolute inset-3 rounded-full bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.8),transparent_40%),linear-gradient(135deg,rgba(244,230,208,0.84),rgba(237,249,248,0.86))]" />
+                          <div className="absolute inset-7 rounded-full border border-dashed border-violet-200/80" />
+                          <div className="relative z-10 flex h-28 w-28 items-center justify-center rounded-full bg-white/90 text-slate-400 shadow-inner">
+                            <div className="text-center">
+                              <Users className="mx-auto mb-1 h-8 w-8 text-violet-500" />
+                              <div className="text-[11px] font-semibold uppercase tracking-[0.18em]">Profile</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="absolute -right-2 top-5 rounded-full border border-white/80 bg-white/95 px-3 py-1 text-[11px] font-semibold text-emerald-700 shadow-sm">
+                        Available
+                      </div>
+                      <div className="absolute -bottom-1 left-6 rounded-full border border-white/80 bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white shadow-lg">
+                        Product leader
+                      </div>
+                    </div>
 
-              {/* Main Heading */}
-              <div>
-                <h1 className="text-4xl lg:text-6xl mb-4 tracking-tight">
-                  <span className="block mb-2 text-slate-700">Hi, I'm</span>
-                  <span className="bg-gradient-to-r from-violet-700 via-fuchsia-600 to-rose-600 bg-clip-text text-transparent font-bold">
-                    Zenith Joshua
-                  </span>
-                </h1>
-                  <p className="text-xl lg:text-2xl text-gray-600 font-medium">
-                    Product Leader & Technical Founder
-                  </p>
-                  <p className="text-base lg:text-lg text-gray-500 mt-4 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                    I build measurable product outcomes by turning ambiguous problems into shipped hardware-software systems, aligned teams, and clear execution metrics.
-                  </p>
-              </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h1 className="text-4xl lg:text-6xl mb-3 tracking-tight text-left">
+                          <span className="block mb-2 text-slate-700">Hi, I'm</span>
+                          <span className="bg-gradient-to-r from-violet-700 via-fuchsia-600 to-rose-600 bg-clip-text text-transparent font-bold">
+                            Zenith Joshua
+                          </span>
+                        </h1>
+                        <p className="text-xl lg:text-2xl text-gray-600 font-medium">
+                          Product Leader & Technical Founder
+                        </p>
+                        <p className="mt-4 max-w-2xl text-base lg:text-lg leading-relaxed text-slate-600">
+                          I build measurable product outcomes by turning ambiguous problems into shipped hardware-software systems, aligned teams, and clear execution metrics.
+                        </p>
+                      </div>
 
-              {/* Key Skills Tags */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-wrap gap-2 justify-center lg:justify-start"
-              >
-                {['IoT', 'Full-Stack Development', 'Team Leadership', 'Innovation'].map((skill, index) => (
-                  <motion.span
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    className="bg-white/80 backdrop-blur-sm text-slate-700 px-3 py-1.5 rounded-full text-sm border border-white/70 shadow-sm hover:border-violet-200 hover:bg-violet-50 transition-all"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </motion.div>
+                      <div className="grid gap-3 sm:grid-cols-3">
+                        <StatChip icon={Trophy} value={counters.problems.toString() + '+'} label="Problems solved" />
+                        <StatChip icon={Users} value={counters.team.toString()} label="Projects led" />
+                        <StatChip icon={ArrowRight} value={counters.awards.toString()} label="Awards won" />
+                      </div>
 
-              {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-3 lg:gap-4 py-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                  className="bg-white/75 backdrop-blur-xl rounded-3xl p-4 border border-white/70 shadow-[0_20px_50px_rgba(120,76,151,0.08)] hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(120,76,151,0.14)] transition-all group"
-                >
-                  <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-rose-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
-                      <Code2 className="w-4 h-4 text-white" />
+                      <div className="flex flex-wrap gap-2">
+                        {['IoT', 'Full-Stack', 'Leadership', 'Innovation'].map((skill) => (
+                          <TagPill key={skill}>{skill}</TagPill>
+                        ))}
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                        {quickActions.map((action, index) => (
+                          <motion.div key={action.title} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + index * 0.08 }}>
+                            {index === 0 ? (
+                              <GradientButton onClick={() => handleAction(action.action)}>
+                                {action.icon}
+                                <span>{action.title}</span>
+                              </GradientButton>
+                            ) : (
+                              <GhostButton onClick={() => handleAction(action.action)}>
+                                {action.icon}
+                                <span>{action.title}</span>
+                              </GhostButton>
+                            )}
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <div className="text-2xl lg:text-3xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-1 font-bold">
-                    {counters.problems}+
-                  </div>
-                  <div className="text-xs lg:text-sm text-slate-600 uppercase tracking-[0.16em]">Problems Solved</div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                  className="bg-white/75 backdrop-blur-xl rounded-3xl p-4 border border-white/70 shadow-[0_20px_50px_rgba(120,76,151,0.08)] hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(120,76,151,0.14)] transition-all group"
-                >
-                  <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
-                      <Trophy className="w-4 h-4 text-white" />
-                    </div>
-                  </div>
-                  <div className="text-2xl lg:text-3xl bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent mb-1 font-bold">
-                    {counters.awards}
-                  </div>
-                  <div className="text-xs lg:text-sm text-slate-600 uppercase tracking-[0.16em]">Awards Won</div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  className="bg-white/75 backdrop-blur-xl rounded-3xl p-4 border border-white/70 shadow-[0_20px_50px_rgba(120,76,151,0.08)] hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(120,76,151,0.14)] transition-all group"
-                >
-                  <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
-                    <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-sky-500 to-cyan-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-md">
-                      <Users className="w-4 h-4 text-white" />
-                    </div>
-                  </div>
-                  <div className="text-2xl lg:text-3xl bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-1 font-bold">
-                    {counters.team}
-                  </div>
-                  <div className="text-xs lg:text-sm text-slate-600 uppercase tracking-[0.16em]">Projects Completed</div>
-                </motion.div>
-              </div>
-
-              {/* Focus Areas Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4">
-                {[
-                  { title: 'Fast Prototyping', icon: '⚡', gradient: 'from-purple-500 to-pink-500' },
-                  { title: 'Impact Engineering', icon: '🛠️', gradient: 'from-blue-500 to-cyan-500' },
-                  { title: 'Product Leadership', icon: '🚀', gradient: 'from-green-500 to-emerald-500' },
-                ].map((pill, idx) => (
-                  <motion.div
-                    key={pill.title}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.45 + idx * 0.07 }}
-                    className={`rounded-2xl p-3 border border-white/60 bg-gradient-to-r ${pill.gradient} text-white text-sm font-semibold shadow-[0_16px_32px_rgba(120,76,151,0.14)]`}
-                  >
-                    <span>{pill.icon}</span> <span>{pill.title}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                {quickActions.map((action, index) => (
-                  <motion.button
-                    key={action.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                    onClick={() => handleAction(action.action)}
-                    className={`${
-                      index === 0
-                        ? 'bg-gradient-to-r from-violet-600 via-fuchsia-500 to-rose-500 text-white shadow-lg shadow-fuchsia-500/25 hover:shadow-xl hover:shadow-fuchsia-500/30'
-                        : 'bg-white/90 backdrop-blur-sm text-slate-700 border border-white/70 hover:border-violet-200 hover:bg-violet-50'
-                    } px-6 py-3 rounded-full flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95 font-medium`}
-                  >
-                    {action.icon}
-                    <span>{action.title}</span>
-                  </motion.button>
-                ))}
-              </div>
+                </div>
+              </GlassCard>
             </motion.div>
 
-            {/* Right Side - Profile & Templates */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-6"
             >
-              {/* Profile Image Card */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="bg-white/75 backdrop-blur-2xl rounded-[2rem] p-6 lg:p-8 shadow-[0_25px_70px_rgba(120,76,151,0.12)] border border-white/70 text-center"
-              >
-                <div className="relative inline-block mb-4">
-                  <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full bg-gradient-to-br from-violet-600 via-fuchsia-500 to-rose-500 p-1 shadow-[0_18px_60px_rgba(217,70,239,0.22)]">
-                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <div className="w-28 h-28 lg:w-36 lg:h-36 rounded-full bg-gradient-to-br from-violet-500 to-rose-500 flex items-center justify-center text-white text-4xl lg:text-5xl font-bold shadow-inner">
-                        ZJ
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white flex items-center justify-center">
-                    <div className="w-2 h-2 bg-white rounded-full"></div>
-                  </div>
-                </div>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-800 mb-2">Zenith Joshua</h3>
-                  <p className="text-gray-600 mb-4">Product Leader & Technical Founder</p>
-                <div className="flex justify-center gap-4 text-sm text-gray-500">
-                  <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Available</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>Remote Ready</span>
-                  </div>
-                </div>
-              </motion.div>
+              <div className="space-y-5">
+                <GlassCard elevation="lg" padding="lg" className="bg-[linear-gradient(135deg,rgba(255,251,247,0.96),rgba(237,249,248,0.86))]">
+                  <SectionHeader
+                    eyebrow="Positioning statement"
+                    title="Product leadership with a designer's eye and an engineer's bias for shipping."
+                    subtitle="I work at the intersection of execution, systems thinking, and high-trust team coordination. The goal is simple: make the portfolio feel like a living canvas, not a static brochure."
+                  />
 
-              {/* Resume Card - Canva Template Style */}
-              <div className="bg-white/75 backdrop-blur-2xl rounded-[2rem] p-6 lg:p-8 shadow-[0_25px_70px_rgba(120,76,151,0.12)] border border-white/70">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-violet-600 via-fuchsia-500 to-rose-500 flex items-center justify-center text-white shadow-lg shadow-fuchsia-500/25">
-                      <FileText className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold">My Resume</h3>
-                      <p className="text-sm text-gray-500">Updated Jan 2026</p>
-                    </div>
-                  </div>
-                  <a href="https://docs.google.com/document/d/1ojae1n-xKYxAsfgFJk5XETuKijtpQ_1nXZOaocUttjY/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-violet-50 hover:bg-violet-100 flex items-center justify-center text-violet-700 transition-all hover:scale-110">
-                    <Download className="w-5 h-5" />
-                  </a>
-                </div>
-
-                {/* Resume Preview */}
-                <div className="bg-[linear-gradient(135deg,rgba(250,250,252,1),rgba(244,238,255,0.92))] rounded-[1.5rem] p-6 space-y-4 border border-white/70 shadow-inner">
-                  <div className="flex items-center gap-3">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-500 to-rose-500 flex items-center justify-center text-white text-xl font-bold shadow-md">
-                      ZJ
-                    </div>
-                    <div>
-                      <div className="text-lg font-semibold">Zenith Joshua</div>
-                      <div className="text-sm text-slate-600">Product Leader & Technical Founder</div>
-                    </div>
+                  <div className="surface-subtle rounded-2xl p-4">
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Focus</div>
+                    <div className="mt-1 text-sm font-semibold text-slate-800">Product execution, hardware systems, and shipped outcomes</div>
+                    <div className="mt-2 text-sm text-slate-600">A clean portfolio-first hero with no resume canvas or editor prompt.</div>
                   </div>
 
-                  <div className="grid gap-2 text-sm sm:grid-cols-2">
-                    <div className="flex items-center gap-2 text-slate-600 rounded-xl bg-white/80 px-3 py-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-500"></div>
-                      <span>Student @Loyola ICAM</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-slate-600 rounded-xl bg-white/80 px-3 py-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-500"></div>
-                      <span>Team Lead @ EFWDC SAEISS</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-slate-600 rounded-xl bg-white/80 px-3 py-2 sm:col-span-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-violet-500"></div>
-                      <span>Co-Founder @ ParkinToday </span>
-                    </div>
+                  <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                    <GhostButton onClick={() => setActiveTab('projects')}>Browse Projects</GhostButton>
+                    <GhostButton onClick={() => setActiveTab('about')}>Contact Me</GhostButton>
                   </div>
+                </GlassCard>
 
-                  {/* Skills Preview */}
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {['IoT', 'Web Development', 'Leadership', 'Innovation'].map((skill) => (
-                      <span key={skill} className="bg-white px-3 py-1 rounded-full text-xs text-slate-700 border border-white/70 shadow-sm">
-                        {skill}
-                      </span>
+                <div>
+                  <div className="flex items-center justify-between mb-4 gap-4 flex-wrap">
+                    <SectionHeader eyebrow="Portfolio evidence" title="Proof of Work" subtitle="Live demos with hover-to-expand previews." accentClassName="from-violet-500 to-fuchsia-500" />
+                    <GhostButton onClick={() => setActiveTab('projects')}>View all work</GhostButton>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
+                    {proofOfWork.map((project, index) => (
+                      <GlassCard
+                        key={project.id}
+                        delay={0.35 + index * 0.08}
+                        interactive
+                        padding="none"
+                        className="group overflow-hidden rounded-[1.75rem] text-left"
+                        onClick={() => {
+                          if (project.link === 'projects') {
+                            setActiveTab('projects');
+                          } else {
+                            window.open(project.link, '_blank');
+                          }
+                        }}
+                      >
+                        <div className="relative h-40 overflow-hidden">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,13,24,0.02),rgba(18,13,24,0.36))]" />
+                          <div className="absolute left-3 top-3">
+                            <TagPill>{project.label}</TagPill>
+                          </div>
+                          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                            <div className="rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-slate-800 shadow-lg backdrop-blur-sm">
+                              Expand preview
+                            </div>
+                          </div>
+                        </div>
+                        <div className="space-y-2 p-4">
+                          <h4 className="text-base font-semibold text-slate-900">{project.title}</h4>
+                          <p className="text-sm leading-relaxed text-slate-600">{project.description}</p>
+                          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-violet-600">
+                            <ExternalLink className="h-3.5 w-3.5" />
+                            <span>{project.link === 'projects' ? 'Open portfolio' : 'Open live demo'}</span>
+                          </div>
+                        </div>
+                      </GlassCard>
                     ))}
                   </div>
-                </div>
-
-                {/* View Full Resume Button */}
-                <button
-                  onClick={() => setActiveTab('about')}
-                  className="mt-4 w-full bg-gradient-to-r from-violet-600 via-fuchsia-500 to-rose-500 text-white py-3 rounded-2xl hover:shadow-lg transition-all flex items-center justify-center gap-2 font-medium hover:scale-[1.02] shadow-[0_18px_50px_rgba(217,70,239,0.2)]"
-                >
-                  <span>View Full Profile</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* Template Grid - Canva Style */}
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold text-slate-800">Featured Signals</h3>
-                  <button className="text-sm text-violet-600 hover:text-violet-700 font-medium">View All</button>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  {templates.map((template, index) => (
-                    <motion.div
-                      key={template.id}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
-                      onClick={() => handleTemplateClick(template)}
-                      className="group bg-white/80 backdrop-blur-xl rounded-3xl p-4 border border-white/70 hover:border-violet-200 hover:shadow-[0_18px_45px_rgba(120,76,151,0.12)] transition-all cursor-pointer hover:-translate-y-1"
-                    >
-                      <div
-                        className="w-full h-28 rounded-2xl mb-3 flex flex-col items-center justify-center relative overflow-hidden p-3 shadow-inner"
-                        style={{ background: template.image }}
-                      >
-                        {/* Stats Display */}
-                        <div className="text-white relative z-10 text-center">
-                          <div className="flex items-center justify-center gap-1.5 mb-1 opacity-90">
-                            {template.stats.icon}
-                          </div>
-                          <div className="text-2xl font-bold mb-0.5 tracking-tight">{template.stats.value}</div>
-                          <div className="text-xs opacity-90">{template.stats.label}</div>
-                        </div>
-
-                        {/* Hover overlay */}
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                          <div className="opacity-0 group-hover:opacity-100 transition-all">
-                            <ExternalLink className="w-5 h-5 text-white" />
-                          </div>
-                        </div>
-                      </div>
-                      <h4 className="text-sm font-semibold mb-1 text-slate-800">{template.title}</h4>
-                      <p className="text-xs text-slate-500">{template.description}</p>
-                    </motion.div>
-                  ))}
                 </div>
               </div>
             </motion.div>
@@ -459,18 +297,12 @@ export function HomePage({ setActiveTab }: HomePageProps) {
                   Let's collaborate on innovative solutions that make a real impact in the world.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button
-                    onClick={() => setActiveTab('projects')}
-                    className="bg-white text-violet-700 px-8 py-3 rounded-full font-semibold hover:bg-white/90 transition-all hover:scale-105 shadow-lg"
-                  >
+                  <GradientButton onClick={() => setActiveTab('projects')} className="bg-white text-violet-700 hover:bg-white/95">
                     View My Work
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('about')}
-                    className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-all hover:scale-105"
-                  >
+                  </GradientButton>
+                  <GhostButton onClick={() => setActiveTab('about')} className="border-white/80 bg-transparent text-white hover:bg-white hover:text-violet-700">
                     Get In Touch
-                  </button>
+                  </GhostButton>
                 </div>
               </div>
             </div>
@@ -478,13 +310,6 @@ export function HomePage({ setActiveTab }: HomePageProps) {
         </div>
       </div>
 
-      {/* Template Editor Modal */}
-      {selectedTemplate && (
-        <TemplateEditor
-          template={selectedTemplate}
-          onClose={() => setSelectedTemplate(null)}
-        />
-      )}
     </div>
   );
 }

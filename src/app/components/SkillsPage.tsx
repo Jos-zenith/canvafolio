@@ -1,41 +1,69 @@
-import { useMemo, useState } from 'react';
 import { motion } from 'motion/react';
-import { Code, Cpu, Wrench, Trophy, Star, Search } from 'lucide-react';
+import { Code, Cpu, Wrench, Trophy, Users } from 'lucide-react';
+import { PageHeader, PageShell, RevealSection } from './PageFrame';
+import { GlassCard } from './ui/portfolio-elements';
 
 export function SkillsPage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const skillCategories = [
+  const skillMatrix = [
     {
       id: 1,
-      title: 'Programming',
+      title: 'Languages',
       icon: <Code className="w-6 h-6" />,
-      color: 'from-purple-500 to-pink-500',
-      skills: ['Python', 'Java', 'C', 'React', 'SQL', 'Nextjs', 'Embedded C', 'Figma', 'Nodejs', 'TailwindCSS'],
+      accent: 'from-violet-500/18 to-fuchsia-500/8',
+      border: 'border-violet-100',
+      note: 'Core coding lanes and problem-solving tools.',
+      skills: [
+        { name: 'Python', level: 95 },
+        { name: 'Java', level: 88 },
+        { name: 'C', level: 82 },
+        { name: 'SQL', level: 84 },
+      ],
     },
     {
       id: 2,
-      title: 'Technologies',
+      title: 'Frameworks',
       icon: <Cpu className="w-6 h-6" />,
-      color: 'from-blue-500 to-cyan-500',
-      skills: ['IoT', 'Embedded Systems (Arduino, ESP32, Pi)', 'MATLAB', 'Networks', 'Web Development'],
+      accent: 'from-sky-500/16 to-teal-500/8',
+      border: 'border-teal-100',
+      note: 'Product interfaces and shipping layers.',
+      skills: [
+        { name: 'React', level: 92 },
+        { name: 'Node.js', level: 87 },
+        { name: 'Tailwind CSS', level: 90 },
+        { name: 'Next.js', level: 82 },
+      ],
     },
     {
       id: 3,
-      title: 'Tools',
+      title: 'Hardware',
       icon: <Wrench className="w-6 h-6" />,
-      color: 'from-green-500 to-emerald-500',
-      skills: ['Jira', 'Trello', 'MS Excel (Advanced)', 'Power BI', 'AutoCAD', 'NX CAD', 'Simulink'],
+      accent: 'from-amber-500/16 to-orange-500/8',
+      border: 'border-amber-100',
+      note: 'Physical systems, prototyping, and embedded work.',
+      skills: [
+        { name: 'IoT', level: 93 },
+        { name: 'Embedded C', level: 88 },
+        { name: 'Arduino / ESP32', level: 90 },
+        { name: 'CAD / PCB design', level: 84 },
+      ],
     },
     {
       id: 4,
-      title: 'Core Competencies',
-      icon: <Star className="w-6 h-6" />,
-      color: 'from-orange-500 to-red-500',
-      skills: ['Agile Project Management', 'Leadership', 'Hardware-Software Integration', 'Documentation'],
+      title: 'Soft Skills',
+      icon: <Users className="w-6 h-6" />,
+      accent: 'from-emerald-500/16 to-cyan-500/8',
+      border: 'border-emerald-100',
+      note: 'How the work gets aligned and shipped.',
+      skills: [
+        { name: 'Leadership', level: 96 },
+        { name: 'Communication', level: 89 },
+        { name: 'Product thinking', level: 91 },
+        { name: 'Agile delivery', level: 85 },
+      ],
     },
   ];
 
-  const achievements = [
+  const proofPoints = [
     {
       id: 1,
       title: 'Envision\'23 - 1st Place',
@@ -43,7 +71,7 @@ export function SkillsPage() {
       context: 'Assistive mobility',
       outcome: 'Prototype validated with competition win',
       icon: '🥇',
-      color: 'from-purple-400 to-pink-500',
+      color: 'bg-violet-50 text-violet-700 border-violet-100',
     },
     {
       id: 3,
@@ -52,7 +80,7 @@ export function SkillsPage() {
       context: 'Urban parking',
       outcome: 'Pitch won on market clarity + execution',
       icon: '🎯',
-      color: 'from-blue-400 to-cyan-500',
+      color: 'bg-slate-50 text-slate-700 border-slate-100',
     },
     {
       id: 2,
@@ -61,252 +89,111 @@ export function SkillsPage() {
       context: 'Healthcare IoT',
       outcome: 'Prototype translated technical depth into impact',
       icon: '🥈',
-      color: 'from-green-400 to-emerald-500',
+      color: 'bg-teal-50 text-teal-700 border-teal-100',
     },
-    {
-      id: 4,
-      title: 'EFWDC\'25 - 3rd Place',
-      description: 'Developed an energy-efficient electric vehicle; secured 3rd place under Chairman’s Special Award category',
-      context: 'EV systems',
-      outcome: 'Team delivery across mechanical + software scopes',
-      icon: '⚡',
-      color: 'from-indigo-400 to-purple-500',
-    },
-    {
-      id: 5,
-      title: 'EFWDC\'24 - 4th Place',
-      description: 'Designed an efficient electric 4-wheeler; won ₹10,000',
-      context: 'EV platform',
-      outcome: 'Practical execution under competition constraints',
-      icon: '⚡',
-      color: 'from-indigo-400 to-purple-500',
-    },
-    {
-      id: 6,
-      title: 'ImpactX 2.0 - 4th Place',
-      description: 'Developed a driver passenger interaction device for ride-hailing services',
-      context: 'Mobility UX',
-      outcome: 'Product concept framed for real-world usage',
-      icon: '🚗',
-      color: 'from-pink-400 to-rose-500',
-    },
-    {
-      id: 7,
-      title: 'KSR Innovative Business pitch - 5th Place',
-      description: 'Pitch for IoT-based smart parking solution for Indian Tier-1 cities',
-      context: 'Smart city planning',
-      outcome: 'Business logic aligned to a city-scale problem',
-      icon: '🏅',
-      color: 'from-yellow-400 to-orange-500',
-    }
   ];
 
-  const filteredCategories = useMemo(() =>
-    skillCategories.filter(category => {
-      const query = searchQuery.toLowerCase();
-      return (
-        category.title.toLowerCase().includes(query) ||
-        category.skills.some(skill => skill.toLowerCase().includes(query))
-      );
-    }),
-    [searchQuery]
-  );
-
-  const filteredAchievements = useMemo(() =>
-    achievements.filter(achievement => {
-      const query = searchQuery.toLowerCase();
-      return (
-        achievement.title.toLowerCase().includes(query) ||
-        achievement.description.toLowerCase().includes(query)
-      );
-    }),
-    [searchQuery]
-  );
-
   return (
-    <div className="max-w-7xl mx-auto px-4 lg:px-8 py-6 lg:py-8">
-      {/* Header */}
-      <div className="mb-6 lg:mb-8 grid gap-4 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-        <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm mb-4 backdrop-blur-xl">
-            Capability Snapshot
-          </div>
-          <h1 className="text-2xl lg:text-4xl mb-2 tracking-tight">Skills & Achievements</h1>
-          <p className="text-sm lg:text-base text-slate-600 max-w-2xl">Product-minded execution, technical depth, and measurable outcomes.</p>
-        </div>
+    <PageShell>
+      <PageHeader
+        eyebrow="Capability Snapshot"
+        title="Skills & Achievements"
+        intro="A matrix of technical depth, hardware fluency, and collaborative delivery that maps directly to shipped outcomes."
+        stats={[
+          { value: '4', label: 'Skill lanes' },
+          { value: '22', label: 'Members led' },
+          { value: '6', label: 'Podiums' },
+        ]}
+      />
 
-        <div className="relative w-full lg:w-80 lg:justify-self-end">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
-            placeholder="Search skills or achievements"
-            className="w-full rounded-2xl border border-white/70 bg-white/80 py-2.5 pl-10 pr-4 text-sm shadow-[0_12px_30px_rgba(120,76,151,0.08)] backdrop-blur-xl outline-none transition focus:border-violet-300 focus:ring-2 focus:ring-violet-100"
-          />
+      <RevealSection>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {[
+            'Frame the problem before choosing the solution',
+            'Align stakeholders around measurable outcomes',
+            'Ship usable systems, not just impressive demos',
+            'Keep the work editable, visual, and collaborative',
+          ].map((item) => (
+            <GlassCard key={item} elevation="sm" padding="sm" className="bg-white/70 text-sm leading-relaxed text-slate-600">
+              {item}
+            </GlassCard>
+          ))}
         </div>
-      </div>
+      </RevealSection>
 
-      <div className="mb-6 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="rounded-[2rem] border border-white/70 bg-white/80 backdrop-blur-xl p-6 shadow-[0_18px_40px_rgba(120,76,151,0.08)]">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-2.5 h-2.5 rounded-full bg-violet-500" />
-            <p className="text-xs uppercase tracking-[0.18em] text-slate-500 font-semibold">Operating style</p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {[
-              'Frame the problem before choosing the solution',
-              'Align stakeholders around measurable outcomes',
-              'Ship usable systems, not just impressive demos',
-            ].map((item) => (
-              <div key={item} className="rounded-2xl bg-slate-50/80 px-4 py-4 text-sm text-slate-600 leading-relaxed">
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="rounded-[2rem] border border-white/70 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_28%),linear-gradient(135deg,#5b21b6,#be185d)] p-6 text-white shadow-[0_24px_60px_rgba(88,28,135,0.20)]">
-          <p className="text-xs uppercase tracking-[0.18em] text-violet-100/90 font-semibold mb-3">What recruiters should notice</p>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {[
-              { value: '22', label: 'Members led' },
-              { value: '2', label: 'Startups' },
-              { value: '6', label: 'Podium finishes' },
-            ].map((item) => (
-              <div key={item.label} className="rounded-2xl bg-white/15 backdrop-blur-sm px-4 py-4 border border-white/10">
-                <div className="text-2xl font-semibold">{item.value}</div>
-                <div className="text-[11px] uppercase tracking-[0.18em] text-violet-100 mt-1">{item.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="mb-6 grid gap-3 lg:grid-cols-4">
-        {[
-          { value: '4', label: 'Skill domains' },
-          { value: '22', label: 'Leadership scope' },
-          { value: '450+', label: 'Problems solved' },
-          { value: '6', label: 'Competition wins' },
-        ].map((item) => (
-          <div key={item.label} className="rounded-[1.5rem] border border-white/70 bg-white/75 backdrop-blur-xl p-4 shadow-[0_18px_40px_rgba(120,76,151,0.08)]">
-            <div className="text-2xl font-semibold text-violet-700">{item.value}</div>
-            <div className="text-xs uppercase tracking-[0.18em] text-slate-500 mt-1">{item.label}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
-        {/* Main Content */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Skills Section */}
-          <div className="space-y-4">
-            {filteredCategories.map((category, index) => (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 shadow-[0_18px_40px_rgba(120,76,151,0.08)] border border-white/70 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(120,76,151,0.14)] transition-all"
-              >
-                <div className="flex items-center gap-4 mb-5">
-                  <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center text-white shadow-md`}>
+      <RevealSection>
+        <div className="grid gap-6 lg:grid-cols-2">
+          {skillMatrix.map((category, index) => (
+            <GlassCard
+              key={category.id}
+              delay={index * 0.05}
+              elevation="md"
+              padding="none"
+              className={`overflow-hidden ${category.border} bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(247,240,231,0.86))] backdrop-blur-xl`}
+            >
+              <div className={`border-b border-white/70 bg-gradient-to-br ${category.accent} p-6 lg:p-7`}>
+                <div className="flex items-center gap-4">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/70 bg-white/80 text-violet-700 shadow-sm">
                     {category.icon}
                   </div>
-                  <h3 className="text-lg lg:text-xl">{category.title}</h3>
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">Skill lane</p>
+                    <h3 className="mt-1 text-xl lg:text-2xl tracking-tight text-slate-900">{category.title}</h3>
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, i) => (
-                    <span
-                      key={i}
-                      className="bg-slate-50 text-slate-700 px-4 py-2 rounded-full text-sm border border-slate-100 hover:bg-violet-50 hover:text-violet-700 hover:border-violet-100 transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-600">{category.note}</p>
+              </div>
+
+              <div className="space-y-4 p-6 lg:p-7">
+                {category.skills.map((skill) => (
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex items-center justify-between gap-4 text-sm">
+                      <span className="font-medium text-slate-800">{skill.name}</span>
+                      <span className="text-slate-500">{skill.level}%</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ duration: 0.8, ease: 'easeOut' }}
+                        className="h-full rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-rose-500"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </GlassCard>
+          ))}
+        </div>
+      </RevealSection>
+
+      <RevealSection>
+        <GlassCard elevation="md" padding="lg" className="bg-[linear-gradient(135deg,rgba(255,251,247,0.96),rgba(237,249,248,0.84))] text-slate-800">
+          <div className="flex items-center gap-2 mb-6">
+            <Trophy className="w-6 h-6 text-violet-600" />
+            <h2 className="text-xl lg:text-2xl tracking-tight">Selected proof points</h2>
+          </div>
+          <div className="grid gap-4 lg:grid-cols-3">
+            {proofPoints.map((proof) => (
+              <GlassCard key={proof.id} elevation="sm" padding="md" className="bg-white/85">
+                <div className="flex items-start gap-3">
+                  <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl text-2xl border ${proof.color}`}>{proof.icon}</div>
+                  <div className="flex-1">
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">{proof.context}</p>
+                    <h3 className="mt-1 text-sm tracking-tight text-slate-900">{proof.title}</h3>
+                  </div>
                 </div>
-              </motion.div>
+                <p className="mt-4 text-sm leading-relaxed text-slate-600">{proof.description}</p>
+                <div className="mt-4 rounded-2xl border border-sand-100 bg-sand-50/70 px-4 py-3">
+                  <p className="text-xs uppercase tracking-[0.18em] text-violet-700 font-semibold">Outcome</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{proof.outcome}</p>
+                </div>
+              </GlassCard>
             ))}
           </div>
-
-          {/* Achievements Section */}
-          <div>
-            <h2 className="text-xl lg:text-2xl mb-4 flex items-center gap-2">
-              <Trophy className="w-6 h-6 text-violet-600" />
-              <span>Achievements</span>
-            </h2>
-            <div className="grid gap-4">
-              {filteredAchievements.map((achievement, index) => (
-                <motion.div
-                  key={achievement.id}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="group grid gap-4 md:grid-cols-[0.38fr_0.62fr] bg-white/80 backdrop-blur-xl rounded-[2rem] p-5 shadow-[0_16px_35px_rgba(120,76,151,0.08)] border border-white/70 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(120,76,151,0.14)] transition-all"
-                >
-                  <div className="rounded-[1.5rem] bg-[linear-gradient(135deg,rgba(250,250,252,1),rgba(244,238,255,0.95))] p-4 border border-white/70">
-                    <div className="flex items-start gap-3">
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${achievement.color} flex items-center justify-center text-2xl flex-shrink-0 shadow-md`}>
-                      {achievement.icon}
-                    </div>
-                      <div className="flex-1">
-                        <div className="text-[11px] uppercase tracking-[0.18em] text-slate-500 mb-1">{achievement.context}</div>
-                        <h3 className="text-sm mb-1 tracking-tight">{achievement.title}</h3>
-                        <p className="text-xs text-slate-600">{achievement.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="rounded-[1.5rem] bg-slate-50/80 p-4 border border-slate-100 flex flex-col justify-between gap-3">
-                    <p className="text-xs uppercase tracking-[0.18em] text-violet-700 font-semibold">Outcome</p>
-                    <p className="text-sm text-slate-600 leading-relaxed">{achievement.outcome}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Sidebar - Stats */}
-        <div className="lg:col-span-1">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.16),transparent_28%),linear-gradient(135deg,#5b21b6,#be185d)] rounded-[2rem] p-6 lg:p-8 text-white sticky top-24 shadow-[0_24px_60px_rgba(88,28,135,0.20)]"
-          >
-            <h3 className="text-lg lg:text-xl mb-6">Quick Stats</h3>
-            <div className="space-y-4">
-              <div className="bg-white/18 backdrop-blur-sm rounded-2xl p-5 border border-white/10">
-                <div className="text-3xl lg:text-4xl mb-2">450+</div>
-                <div className="text-sm text-purple-100">Problems Solved</div>
-                <div className="text-xs text-purple-200 mt-1">Skillrack Global Ranking</div>
-              </div>
-              <div className="bg-white/18 backdrop-blur-sm rounded-2xl p-5 border border-white/10">
-                <div className="text-3xl lg:text-4xl mb-2">6</div>
-                <div className="text-sm text-purple-100">Competitions Won</div>
-                <div className="text-xs text-purple-200 mt-1">National & College Level</div>
-              </div>
-              <div className="bg-white/18 backdrop-blur-sm rounded-2xl p-5 border border-white/10">
-                <div className="text-3xl lg:text-4xl mb-2">7+</div>
-                <div className="text-sm text-purple-100">Certifications</div>
-                <div className="text-xs text-purple-200 mt-1">Industry Recognized</div>
-              </div>
-              <div className="bg-white/18 backdrop-blur-sm rounded-2xl p-5 border border-white/10">
-                <div className="text-3xl lg:text-4xl mb-2">22</div>
-                <div className="text-sm text-purple-100">Team Members Led</div>
-                <div className="text-xs text-purple-200 mt-1">Cross-functional Teams</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {(filteredCategories.length === 0 && filteredAchievements.length === 0) && searchQuery && (
-        <div className="text-center py-20">
-          <div className="text-6xl mb-4">🔍</div>
-          <p className="text-gray-400 text-lg">No skills or achievements found matching "{searchQuery}"</p>
-        </div>
-      )}
-    </div>
+        </GlassCard>
+      </RevealSection>
+    </PageShell>
   );
 }

@@ -1,5 +1,7 @@
 import { motion } from 'motion/react';
 import { Briefcase, GraduationCap, Award, Calendar } from 'lucide-react';
+import { PageHeader, PageShell, RevealSection } from './PageFrame';
+import { GlassCard } from './ui/portfolio-elements';
 
 export function ExperiencePage() {
   const experiences = [
@@ -82,131 +84,133 @@ export function ExperiencePage() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 lg:px-8 py-6 lg:py-8">
-      {/* Header */}
-      <div className="mb-6 lg:mb-8 grid gap-4 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-        <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-violet-700 shadow-sm mb-4 backdrop-blur-xl">
-            Product + Execution
-          </div>
-          <h1 className="text-2xl lg:text-4xl mb-2 tracking-tight">Experience & Education</h1>
-          <p className="text-sm lg:text-base text-slate-600 max-w-2xl">A track record of leading teams, shipping systems, and turning engineering work into visible outcomes.</p>
-        </div>
-        <div className="rounded-[1.75rem] border border-white/70 bg-white/75 backdrop-blur-xl p-5 shadow-[0_18px_40px_rgba(120,76,151,0.08)]">
-          <div className="grid grid-cols-3 gap-3 text-center">
-            {[
-              { value: '22', label: 'Led' },
-              { value: '6', label: 'Wins' },
-              { value: '2', label: 'Startups' },
-            ].map((item) => (
-              <div key={item.label} className="rounded-2xl bg-slate-50/80 p-3">
-                <div className="text-xl font-semibold text-violet-700">{item.value}</div>
-                <div className="text-[11px] uppercase tracking-[0.18em] text-slate-500">{item.label}</div>
+    <PageShell>
+      <PageHeader
+        eyebrow="Product + Execution"
+        title="Experience & Education"
+        intro="A track record of leading teams, shipping systems, and turning engineering work into visible outcomes."
+        stats={[
+          { value: '22', label: 'Led' },
+          { value: '6', label: 'Wins' },
+          { value: '2', label: 'Startups' },
+        ]}
+      />
+
+      <RevealSection>
+        <GlassCard elevation="lg" padding="lg" className="bg-[linear-gradient(135deg,rgba(51,20,99,0.98),rgba(118,29,72,0.96))] text-white">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div className="flex items-start gap-4">
+              <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-white/18 text-white backdrop-blur-sm">
+                <GraduationCap className="h-7 w-7" />
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
-        {/* Main Content */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Education Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.16),transparent_28%),linear-gradient(135deg,#5b21b6,#be185d)] rounded-[2rem] p-6 lg:p-8 text-white shadow-[0_24px_60px_rgba(88,28,135,0.20)]"
-          >
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center flex-shrink-0">
-                <GraduationCap className="w-7 h-7" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-xl lg:text-2xl mb-2">{education.degree}</h3>
-                <p className="text-purple-100">{education.institution}</p>
-              </div>
-            </div>
-            <div className="flex flex-wrap items-center gap-4 text-sm">
-              <span className="text-violet-100">CGPA: {education.cgpa}</span>
-              <span className="text-purple-100">•</span>
-              <span className="text-violet-100">{education.period}</span>
-            </div>
-          </motion.div>
-
-          {/* Work Experience */}
-          <div className="space-y-4 relative before:absolute before:left-6 before:top-0 before:bottom-0 before:w-px before:bg-gradient-to-b before:from-violet-300 before:to-transparent lg:before:left-7">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={exp.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="relative bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 lg:p-8 shadow-[0_18px_40px_rgba(120,76,151,0.08)] border border-white/70 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(120,76,151,0.14)] transition-all ml-10 lg:ml-14"
-              >
-                <div className={`absolute -left-10 lg:-left-14 top-8 w-5 h-5 rounded-full border-4 border-white shadow-sm ${exp.color === 'purple' ? 'bg-violet-500' : exp.color === 'green' ? 'bg-emerald-500' : 'bg-sky-500'}`} />
-                {/* Header */}
-                <div className="flex items-start gap-4 mb-4">
-                  <div className={`w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-gradient-to-br ${
-                    exp.color === 'purple' ? 'from-purple-500 to-pink-500' :
-                    exp.color === 'green' ? 'from-green-500 to-emerald-500' :
-                    'from-blue-500 to-cyan-500'
-                  } flex items-center justify-center text-white flex-shrink-0 shadow-md`}>
-                    {exp.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg lg:text-xl mb-1 tracking-tight">{exp.title}</h3>
-                    <p className="text-sm lg:text-base text-slate-600">{exp.organization}</p>
-                  </div>
-                </div>
-
-                {/* Period */}
-                <div className="flex items-center gap-2 mb-4 text-violet-700">
-                  <Calendar className="w-4 h-4" />
-                  <span className="text-sm">{exp.period}</span>
-                </div>
-
-                {/* Description */}
-                <p className="text-sm lg:text-base text-slate-600 mb-4 leading-relaxed">
-                  {exp.description}
+              <div>
+                <h2 className="text-2xl lg:text-3xl text-white">{education.degree}</h2>
+                <p className="mt-1 text-purple-100">{education.institution}</p>
+                <p className="mt-3 max-w-2xl text-sm lg:text-base leading-relaxed text-purple-50/95">
+                  Structured learning with consistent delivery in product, hardware, and systems work.
                 </p>
-
-                {/* Achievements */}
-                <div className="grid gap-2">
-                  {exp.achievements.map((achievement, i) => (
-                    <div key={i} className="rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-3">
-                      <p className="text-sm text-slate-600 flex-1 leading-relaxed">{achievement}</p>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Sidebar - Certifications */}
-        <div className="lg:col-span-1">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 shadow-[0_18px_40px_rgba(120,76,151,0.08)] border border-white/70 sticky top-24"
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <Award className="w-5 h-5 text-violet-600" />
-              <h2 className="text-lg lg:text-xl">Certifications</h2>
+              </div>
             </div>
-            <div className="space-y-3">
-              {certifications.map((cert, index) => (
-                <div key={index} className="flex items-start gap-3 p-3 rounded-2xl hover:bg-violet-50/80 transition-colors border border-transparent hover:border-violet-100">
-                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 mt-1.5 flex-shrink-0" />
-                  <p className="text-sm text-slate-700 flex-1">{cert}</p>
+            <div className="grid grid-cols-2 gap-3 lg:min-w-[280px]">
+              {[
+                { value: education.cgpa, label: 'CGPA' },
+                { value: education.period, label: 'Timeline' },
+              ].map((item) => (
+                <div key={item.label} className="rounded-[1.25rem] border border-white/18 bg-white/12 p-4 backdrop-blur-sm text-white shadow-[0_10px_24px_rgba(0,0,0,0.08)]">
+                  <div className="text-lg font-semibold text-white">{item.value}</div>
+                  <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-purple-50/85">{item.label}</div>
                 </div>
               ))}
             </div>
-          </motion.div>
-        </div>
-      </div>
+          </div>
+        </GlassCard>
+      </RevealSection>
 
-    </div>
+      <RevealSection>
+        <div className="relative pl-8 lg:pl-0">
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-violet-300 via-violet-200 to-transparent lg:left-1/2 lg:-translate-x-1/2" />
+          <div className="space-y-6 lg:space-y-8">
+            {experiences.map((exp, index) => {
+              const isLeft = index % 2 === 0;
+
+              return (
+                <motion.div
+                  key={exp.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_72px_minmax(0,1fr)] lg:items-start"
+                >
+                  <div className={`${isLeft ? 'order-1 lg:order-1' : 'order-1 lg:order-3'}`}>
+                    <GlassCard interactive elevation="md" padding="lg" className="transition-transform">
+                      <div className="mb-4 flex items-start gap-4">
+                        <div
+                          className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border shadow-sm ${
+                            exp.color === 'purple'
+                              ? 'bg-violet-50 text-violet-700 border-violet-100'
+                              : exp.color === 'green'
+                                ? 'bg-teal-50 text-teal-700 border-teal-100'
+                                : 'bg-slate-50 text-slate-700 border-slate-100'
+                          }`}
+                        >
+                          {exp.icon}
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">{exp.type}</p>
+                          <h3 className="mt-1 text-lg lg:text-xl tracking-tight text-slate-900">{exp.title}</h3>
+                          <p className="text-sm lg:text-base text-slate-600">{exp.organization}</p>
+                        </div>
+                      </div>
+
+                      <div className="mb-4 flex items-center gap-2 text-violet-700">
+                        <Calendar className="h-4 w-4" />
+                        <span className="text-sm">{exp.period}</span>
+                      </div>
+
+                      <p className="mb-4 text-sm lg:text-base leading-relaxed text-slate-600">{exp.description}</p>
+
+                      <div className="space-y-2">
+                        {exp.achievements.map((achievement) => (
+                          <div key={achievement} className="rounded-2xl border border-sand-100 bg-sand-50/70 px-4 py-3">
+                            <p className="text-sm leading-relaxed text-slate-600">{achievement}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </GlassCard>
+                  </div>
+
+                  <div className="order-2 flex items-start justify-start lg:justify-center">
+                    <div className="relative mt-8 flex h-10 w-10 items-center justify-center rounded-full border-4 border-white bg-violet-500 shadow-[0_10px_24px_rgba(109,40,217,0.22)]">
+                      <div className="h-3 w-3 rounded-full bg-white" />
+                      <div className="absolute inset-0 rounded-full border border-violet-200/70 animate-pulse" />
+                    </div>
+                  </div>
+
+                  <div className={`${isLeft ? 'hidden lg:block lg:order-3' : 'hidden lg:block lg:order-1'}`} />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </RevealSection>
+
+      <RevealSection>
+        <GlassCard elevation="md" padding="lg">
+          <div className="flex items-center gap-2 mb-6">
+            <Award className="w-5 h-5 text-violet-600" />
+            <h2 className="text-lg lg:text-xl">Certifications</h2>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {certifications.map((cert) => (
+              <div key={cert} className="flex items-start gap-3 rounded-2xl border border-sand-100 bg-sand-50/70 p-4 transition-colors hover:border-violet-100 hover:bg-violet-50/60">
+                <div className="mt-1 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500" />
+                <p className="text-sm leading-relaxed text-slate-700">{cert}</p>
+              </div>
+            ))}
+          </div>
+        </GlassCard>
+      </RevealSection>
+    </PageShell>
   );
 }
